@@ -60,3 +60,10 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Virtual Environment
+.venv
+
+# IDEA & VSCode
+.idea/
+.vscode/

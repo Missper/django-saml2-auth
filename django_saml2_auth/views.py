@@ -21,15 +21,12 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.template import TemplateDoesNotExist
 from django.http import HttpResponseRedirect
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 
 
-try:
-    import urllib2 as _urllib
-except:
-    import urllib.request as _urllib
-    import urllib.error
-    import urllib.parse
+import urllib.request as _urllib
+import urllib.error
+import urllib.parse
 
 
 User = get_user_model()
@@ -46,11 +43,7 @@ def get_current_domain(r):
 
 
 def get_reverse(objs):
-    '''In order to support different django version, I have to do this '''
-    if parse_version(get_version()) >= parse_version('2.0'):
-        from django.urls import reverse
-    else:
-        from django.core.urlresolvers import reverse
+    from django.urls import reverse
     if objs.__class__.__name__ not in ['list', 'tuple']:
         objs = [objs]
 
@@ -148,12 +141,8 @@ def acs(request):
 
 
 def signin(r):
-    try:
-        import urlparse as _urlparse
-        from urllib import unquote
-    except:
-        import urllib.parse as _urlparse
-        from urllib.parse import unquote
+    import urllib.parse as _urlparse
+    from urllib.parse import unquote
     next_url = r.GET.get('next', settings.SAML2_AUTH.get('DEFAULT_NEXT_URL', get_reverse('admin:index')))
 
     try:
@@ -163,7 +152,7 @@ def signin(r):
         next_url = r.GET.get('next', settings.SAML2_AUTH.get('DEFAULT_NEXT_URL', get_reverse('admin:index')))
 
     # Only permit signin requests where the next_url is a safe URL
-    if not is_safe_url(next_url):
+    if not url_has_allowed_host_and_scheme(next_url, allowed_hosts={r.get_host()}):
         logger.error('Next URL is not safe url in Okta login.')
         return HttpResponseRedirect(get_reverse([denied, 'denied', 'django_saml2_auth:denied']))
 
