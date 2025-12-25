@@ -1,6 +1,6 @@
 """The setup module for django_saml2_auth.
 See:
-https://github.com/fangli/django_saml2_auth
+https://github.com/Missper/django-saml2-auth/
 """
 
 from codecs import open
@@ -16,7 +16,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='django_saml2_auth',
 
-    version='2.3.0',
+    version='5.2.1',
 
     description='Django SAML2 Authentication Made Easy. Easily integrate with SAML2 SSO identity providers like Okta',
     long_description=long_description,

@@ -11,8 +11,6 @@ from saml2 import (
 from saml2.client import Saml2Client
 from saml2.config import Config as Saml2Config
 
-from django import get_version
-from pkg_resources import parse_version
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -23,10 +21,6 @@ from django.template import TemplateDoesNotExist
 from django.http import HttpResponseRedirect
 from django.utils.http import url_has_allowed_host_and_scheme
 
-
-import urllib.request as _urllib
-import urllib.error
-import urllib.parse
 
 
 User = get_user_model()

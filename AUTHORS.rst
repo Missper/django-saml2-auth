@@ -1,11 +1,11 @@
-This project is written and maintained by Fang Li and
+This project is written and maintained by Xiaoyu Zhang and
 various contributors:
 
 
 Django Saml2 Auth
 -----------------
 
-- Fang Li
+- Xiaoyu Zhang
 
 
 
@@ -19,6 +19,7 @@ Pysaml2
 Contributors
 ------------
 
+- `Feng Li <https://github.com/fangli/django_saml2_auth>`_
 - `DSpeichert <https://github.com/DSpeichert>`_
 - `jacobh <https://github.com/jacobh>`_
 - `Gene Wood <http://github.com/gene1wood/>`_
